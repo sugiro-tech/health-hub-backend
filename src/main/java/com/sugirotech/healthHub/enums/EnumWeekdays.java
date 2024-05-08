@@ -3,7 +3,7 @@ package com.sugirotech.healthHub.enums;
 import lombok.Getter;
 
 @Getter
-public enum Weekdays {
+public enum EnumWeekdays {
     MONDAY("monday"),
     TUESDAY("tuesday"),
     WEDNESDAY("wednesday"),
@@ -14,7 +14,7 @@ public enum Weekdays {
 
     private String weekday;
 
-    Weekdays(String weekday) {
+    EnumWeekdays(String weekday) {
         this.weekday=weekday;
     }
 }

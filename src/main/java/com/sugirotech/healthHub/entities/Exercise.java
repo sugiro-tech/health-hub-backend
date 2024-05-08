@@ -1,6 +1,5 @@
 package com.sugirotech.healthHub.entities;
 
-import com.sugirotech.healthHub.enums.Weekdays;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
