@@ -14,7 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Exercise {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +22,4 @@ public class Exercise {
     private Integer repetitions;
     private Double exercise_interval;
     private Double interval_next;
-
 }

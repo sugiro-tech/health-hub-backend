@@ -3,8 +3,12 @@ package com.sugirotech.healthHub.entities.users;
 import com.sugirotech.healthHub.enums.EnumRoles;
 import com.sugirotech.healthHub.enums.EnumSex;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 
 
+@Entity
+@AllArgsConstructor
+@Table(name = "User")
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +18,8 @@ public class User{
     private String password;
     private String cep;
     private Integer age;
-
     @Enumerated(EnumType.STRING)
     private EnumRoles role;
-
     @Enumerated(EnumType.STRING)
     private EnumSex sex;
 }
