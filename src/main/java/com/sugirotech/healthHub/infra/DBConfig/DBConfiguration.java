@@ -1,4 +1,4 @@
-package com.sugirotech.healthHub.DBConfig;
+package com.sugirotech.healthHub.infra.DBConfig;
 
 import lombok.Getter;
 import lombok.Setter;
