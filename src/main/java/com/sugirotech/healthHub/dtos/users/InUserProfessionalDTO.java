@@ -1,4 +1,4 @@
-package com.sugirotech.healthHub.dtos;
+package com.sugirotech.healthHub.dtos.users;
 
 import com.sugirotech.healthHub.enums.EnumJobProfessional;
 import com.sugirotech.healthHub.enums.EnumRoles;

@@ -1,7 +1,9 @@
 package com.sugirotech.healthHub.controllers;
 
-import com.sugirotech.healthHub.dtos.InfoNutriDTO;
+import com.sugirotech.healthHub.dtos.InNutriDTO;
+import com.sugirotech.healthHub.entities.InfoNutri;
 import com.sugirotech.healthHub.services.InfoNutriService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,16 @@ public class InfoNutriController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<InfoNutriDTO> create (@RequestBody @Valid InfoNutriDTO data, UriComponentsBuilder uriBuilder){
-        InfoNutriDTO nutri = nutriService.create(data);
+    @Operation(summary = "Register a nutritional table!",
+            description ="Register a nutritional table!",
+            tags = {"Nutritional Info"})
+    public ResponseEntity<InNutriDTO> create (@RequestBody @Valid InNutriDTO data, UriComponentsBuilder uriBuilder){
+        InfoNutri nutri = new InfoNutri(data);
+
+        var uri = uriBuilder.path("/exercise/{id}").buildAndExpand(nutri.getId()).toUri();
 
         // Terminar
 
-        return new ResponseEntity<>(nutri, HttpStatus.OK);
+        return ResponseEntity.created(uri).body(new InNutriDTO(nutri));
     }
-
 }

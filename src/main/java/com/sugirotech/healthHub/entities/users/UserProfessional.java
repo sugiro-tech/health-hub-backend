@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.entities.users;
 
-import com.sugirotech.healthHub.dtos.InUserProfessionalDTO;
+import com.sugirotech.healthHub.dtos.users.InUserProfessionalDTO;
 import com.sugirotech.healthHub.enums.EnumJobProfessional;
 import com.sugirotech.healthHub.enums.EnumRoles;
 import com.sugirotech.healthHub.enums.EnumSex;

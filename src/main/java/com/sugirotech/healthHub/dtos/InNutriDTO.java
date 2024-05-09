@@ -1,10 +1,9 @@
 package com.sugirotech.healthHub.dtos;
 
 import com.sugirotech.healthHub.entities.InfoNutri;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 
-public record InfoNutriDTO(
+public record InNutriDTO(
         @PositiveOrZero
         Double kilocalories,
         @PositiveOrZero
@@ -18,7 +17,7 @@ public record InfoNutriDTO(
         @PositiveOrZero
         Double fibers
 ) {
-        public InfoNutriDTO(InfoNutri nutri){
+        public InNutriDTO(InfoNutri nutri){
                 this(nutri.getKilocalories(), nutri.getProtein(),
                         nutri.getCarb(), nutri.getLipids(),
                         nutri.getSaturated(), nutri.getFibers());

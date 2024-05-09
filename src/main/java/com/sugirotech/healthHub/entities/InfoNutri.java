@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.entities;
 
-import com.sugirotech.healthHub.dtos.InfoNutriDTO;
+import com.sugirotech.healthHub.dtos.InNutriDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,7 +26,7 @@ public class InfoNutri {
 
     // Construtor com DTO
 
-    public InfoNutri(InfoNutriDTO data) {
+    public InfoNutri(InNutriDTO data) {
         this.kilocalories = data.kilocalories();
         this.protein = data.protein();
         this.carb = data.carb();
