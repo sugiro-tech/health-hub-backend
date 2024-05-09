@@ -6,7 +6,7 @@ import lombok.*;
 
 
 @Entity
-@Table(name = "nutri_info")
+@Table(name = "nutri")
 @Getter
 @Setter
 @AllArgsConstructor
