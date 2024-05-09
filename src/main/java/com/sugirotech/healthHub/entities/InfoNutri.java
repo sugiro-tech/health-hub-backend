@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.entities;
 
+import com.sugirotech.healthHub.dtos.InfoNutriDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,4 +24,14 @@ public class InfoNutri {
     private Double saturated;
     private Double fibers;
 
+    // Construtor com DTO
+
+    public InfoNutri(InfoNutriDTO data) {
+        this.kilocalories = data.kilocalories();
+        this.protein = data.protein();
+        this.carb = data.carb();
+        this.lipids = data.lipids();
+        this.saturated = data.saturated();
+        this.fibers = data.fibers();
+    }
 }
