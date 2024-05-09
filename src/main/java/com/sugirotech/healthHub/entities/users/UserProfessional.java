@@ -37,7 +37,6 @@ public class UserProfessional extends User{
         super(data.name(), data.email(), data.password(), data.cpf(), data.age(),
         data.role(), data.sex());
 
-
         this.crn_cref = data.crn_cref();
         this.job = data.job();
         this.rating = 0;
