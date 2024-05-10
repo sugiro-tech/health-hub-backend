@@ -1,5 +1,4 @@
 CREATE TABLE nutri(
-
     id BIGINT NOT NULL AUTO_INCREMENT,
     kilocalories DOUBLE NOT NULL,
     protein DOUBLE NOT NULL,
@@ -13,7 +12,6 @@ CREATE TABLE nutri(
 
 
 CREATE TABLE exercise(
-
     id BIGINT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     rounds INT NOT NULL,
