@@ -1,31 +1,35 @@
 package com.sugirotech.healthHub.entities.users;
 
 import com.sugirotech.healthHub.dtos.users.InUserProfessionalDTO;
+import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.enums.EnumJobProfessional;
 import com.sugirotech.healthHub.enums.EnumRoles;
 import com.sugirotech.healthHub.enums.EnumSex;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
-@Table(name = "User_Professional")
+@Table(name = "user_professional")
 @Getter
 @Setter
 public class UserProfessional extends User{
     private String crn_cref;
     private Integer rating;
+
     @Enumerated(EnumType.STRING)
     private EnumJobProfessional job;
 
-    public UserProfessional(Long id, String name, String email, String password,
+    @ManyToMany(mappedBy = "fk_professional", fetch = FetchType.EAGER)
+    private List<Address> fk_address;
+
+    public UserProfessional(String name, String email, String password,
                             String cpf, Integer age, String crn_cref,
                             EnumRoles role, EnumSex sex, Integer rating, EnumJobProfessional job) {
-        super(id, name, email, password, cpf, age, role, sex);
+        super(name, email, password, cpf, age, role, sex);
         this.crn_cref = crn_cref;
         this.rating = rating;
         this.job = job;

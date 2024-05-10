@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.entities.users;
 
+import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.enums.EnumRoles;
 import com.sugirotech.healthHub.enums.EnumSex;
 import jakarta.persistence.*;
@@ -7,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
-@Table(name = "User")
+@Table(name = "user_client")
 @AllArgsConstructor
 @Getter
 @Setter
@@ -22,8 +25,10 @@ public class User{
     private String password;
     private String cpf;
     private Integer age;
+
     @Enumerated(EnumType.STRING)
     private EnumRoles role;
+
     @Enumerated(EnumType.STRING)
     private EnumSex sex;
 
