@@ -77,4 +77,3 @@ CREATE TABLE professional_address(
     FOREIGN KEY(fk_address) REFERENCES address(id),
     FOREIGN KEY(fk_professional) REFERENCES user_professional(id)
 );
-

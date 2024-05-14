@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.enums.workout;
 
+// Sem uso
 
 public enum EnumMuscleGroup {
     CHEST,

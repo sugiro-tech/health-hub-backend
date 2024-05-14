@@ -23,6 +23,4 @@ public class Workout {
     @Enumerated(EnumType.STRING)
     private EnumTrainingOptions option;
 
-
-
 }

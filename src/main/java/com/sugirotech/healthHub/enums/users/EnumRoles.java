@@ -8,7 +8,7 @@ public enum EnumRoles {
     CLIENT("client"),
     PROFESSIONAL("professional");
 
-    private String role;
+    private final String role;
 
     EnumRoles(String role){
         this.role = role;
