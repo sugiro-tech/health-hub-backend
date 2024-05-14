@@ -1,5 +1,8 @@
-package com.sugirotech.healthHub.enums;
+package com.sugirotech.healthHub.enums.users;
 
+import lombok.Getter;
+
+@Getter
 public enum EnumRoles {
     ADMIN("admin"),
     CLIENT("client"),

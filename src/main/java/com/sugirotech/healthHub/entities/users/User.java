@@ -1,14 +1,11 @@
 package com.sugirotech.healthHub.entities.users;
 
-import com.sugirotech.healthHub.entities.Address;
-import com.sugirotech.healthHub.enums.EnumRoles;
-import com.sugirotech.healthHub.enums.EnumSex;
+import com.sugirotech.healthHub.enums.users.EnumRoles;
+import com.sugirotech.healthHub.enums.users.EnumSex;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 
 @Entity

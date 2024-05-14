@@ -1,4 +1,4 @@
-package com.sugirotech.healthHub.enums;
+package com.sugirotech.healthHub.enums.workout;
 
 import lombok.Getter;
 
@@ -12,7 +12,7 @@ public enum EnumWeekdays {
     SATURDAY("saturday"),
     SUNDAY("sunday");
 
-    private String weekday;
+    private final String weekday;
 
     EnumWeekdays(String weekday) {
         this.weekday=weekday;

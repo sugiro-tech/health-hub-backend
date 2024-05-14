@@ -1,8 +1,8 @@
 package com.sugirotech.healthHub.dtos.users;
 
-import com.sugirotech.healthHub.enums.EnumJobProfessional;
-import com.sugirotech.healthHub.enums.EnumRoles;
-import com.sugirotech.healthHub.enums.EnumSex;
+import com.sugirotech.healthHub.enums.users.EnumJobProfessional;
+import com.sugirotech.healthHub.enums.users.EnumRoles;
+import com.sugirotech.healthHub.enums.users.EnumSex;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
 

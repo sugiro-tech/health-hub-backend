@@ -2,9 +2,9 @@ package com.sugirotech.healthHub.entities.users;
 
 import com.sugirotech.healthHub.dtos.users.InUserProfessionalDTO;
 import com.sugirotech.healthHub.entities.Address;
-import com.sugirotech.healthHub.enums.EnumJobProfessional;
-import com.sugirotech.healthHub.enums.EnumRoles;
-import com.sugirotech.healthHub.enums.EnumSex;
+import com.sugirotech.healthHub.enums.users.EnumJobProfessional;
+import com.sugirotech.healthHub.enums.users.EnumRoles;
+import com.sugirotech.healthHub.enums.users.EnumSex;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
