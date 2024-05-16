@@ -13,14 +13,16 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Workout {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
     private EnumWeekdays weekday;
-
     @Enumerated(EnumType.STRING)
     private EnumTrainingOptions option;
+
+
 
 }

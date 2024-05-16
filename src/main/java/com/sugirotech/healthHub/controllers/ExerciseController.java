@@ -28,11 +28,10 @@ public class ExerciseController {
             description ="Register an exercise!",
             tags = {"Exercise"})
     public ResponseEntity<InExerciseDTO> create (@RequestBody @Valid InExerciseDTO data, UriComponentsBuilder uriBuilder){
-
         Exercise exercise = new Exercise(data);
 
         var uri = uriBuilder.path("/exercise/{id}").buildAndExpand(exercise.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new InExerciseDTO(exercise));
+        return ResponseEntity.created(uri).body(exerciseService.create(new InExerciseDTO(exercise)));
     }
 }

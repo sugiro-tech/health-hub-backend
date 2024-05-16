@@ -1,26 +1,26 @@
 CREATE TABLE nutri(
-    id SERIAL PRIMARY KEY,
-    kilocalories DOUBLE PRECISION NOT NULL,
-    protein DOUBLE PRECISION NOT NULL,
-    carb DOUBLE PRECISION NOT NULL,
-    lipids DOUBLE PRECISION NOT NULL,
-    saturated DOUBLE PRECISION NOT NULL,
-    fibers DOUBLE PRECISION NOT NULL
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    kilocalories DOUBLE NOT NULL,
+    protein DOUBLE NOT NULL,
+    carb DOUBLE NOT NULL,
+    lipids DOUBLE NOT NULL,
+    saturated DOUBLE NOT NULL,
+    fibers DOUBLE NOT NULL
 );
 
 
 CREATE TABLE exercise(
-    id SERIAL PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     rounds INT NOT NULL,
     repetitions INT NOT NULL,
-    exercise_interval DOUBLE PRECISION NOT NULL,
-    interval_next DOUBLE PRECISION NOT NULL
+    exercise_interval DOUBLE NOT NULL,
+    interval_next DOUBLE NOT NULL
 );
 
 
 CREATE TABLE address(
-    id SERIAL PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     street VARCHAR(100) NOT NULL,
     neighborhood VARCHAR(100) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE address(
 
 
 CREATE TABLE user_professional(
-    id SERIAL PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
     password VARCHAR(250) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE user_professional(
 
 
 CREATE TABLE user_client(
-    id SERIAL PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
     password VARCHAR(250) NOT NULL,
