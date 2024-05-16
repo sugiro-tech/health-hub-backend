@@ -1,9 +1,10 @@
 package com.sugirotech.healthHub.entities;
 
-import com.sugirotech.healthHub.enums.workout.EnumTrainingOptions;
 import com.sugirotech.healthHub.enums.workout.EnumWeekdays;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "workout")
@@ -18,11 +19,12 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @Enumerated(EnumType.STRING)
     private EnumWeekdays weekday;
-    @Enumerated(EnumType.STRING)
-    private EnumTrainingOptions option;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "fk_exercise", referencedColumnName = "id")
+    private List<Exercise> fk_exercise;
 }

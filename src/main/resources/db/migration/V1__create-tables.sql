@@ -1,26 +1,24 @@
 CREATE TABLE nutri(
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    kilocalories DOUBLE NOT NULL,
-    protein DOUBLE NOT NULL,
-    carb DOUBLE NOT NULL,
-    lipids DOUBLE NOT NULL,
-    saturated DOUBLE NOT NULL,
-    fibers DOUBLE NOT NULL
+    id BIGSERIAL PRIMARY KEY,
+    kilocalories DOUBLE PRECISION NOT NULL,
+    protein DOUBLE PRECISION NOT NULL,
+    carb DOUBLE PRECISION NOT NULL,
+    lipids DOUBLE PRECISION NOT NULL,
+    saturated DOUBLE PRECISION NOT NULL,
+    fibers DOUBLE PRECISION NOT NULL
 );
 
-
 CREATE TABLE exercise(
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     rounds INT NOT NULL,
     repetitions INT NOT NULL,
-    exercise_interval DOUBLE NOT NULL,
-    interval_next DOUBLE NOT NULL
+    exercise_interval DOUBLE PRECISION NOT NULL,
+    interval_next DOUBLE PRECISION NOT NULL
 );
 
-
 CREATE TABLE address(
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     street VARCHAR(100) NOT NULL,
     neighborhood VARCHAR(100) NOT NULL,
@@ -29,9 +27,8 @@ CREATE TABLE address(
     number BIGINT NOT NULL
 );
 
-
 CREATE TABLE user_professional(
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
     password VARCHAR(250) NOT NULL,
@@ -44,9 +41,8 @@ CREATE TABLE user_professional(
     job VARCHAR(40) NOT NULL
 );
 
-
 CREATE TABLE user_client(
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
     password VARCHAR(250) NOT NULL,
@@ -56,7 +52,6 @@ CREATE TABLE user_client(
     role VARCHAR(50) NOT NULL,
     sex VARCHAR(30) NOT NULL
 );
-
 
 CREATE TABLE professional_address(
     fk_address BIGINT NOT NULL,
