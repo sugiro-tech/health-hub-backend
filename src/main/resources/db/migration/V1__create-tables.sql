@@ -8,15 +8,6 @@ CREATE TABLE nutri(
     fibers DOUBLE PRECISION NOT NULL
 );
 
-CREATE TABLE exercise(
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    rounds INT NOT NULL,
-    repetitions INT NOT NULL,
-    exercise_interval DOUBLE PRECISION NOT NULL,
-    interval_next DOUBLE PRECISION NOT NULL
-);
-
 CREATE TABLE address(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -59,4 +50,36 @@ CREATE TABLE professional_address(
     PRIMARY KEY(fk_address, fk_professional),
     FOREIGN KEY(fk_address) REFERENCES address(id),
     FOREIGN KEY(fk_professional) REFERENCES user_professional(id)
+);
+
+CREATE TABLE exercise(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    rounds INT NOT NULL,
+    repetitions INT NOT NULL,
+    exercise_interval DOUBLE PRECISION NOT NULL,
+    interval_next DOUBLE PRECISION NOT NULL
+);
+
+CREATE TABLE workout(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    weekday VARCHAR(200) NOT NULL,
+    fk_exercise BIGSERIAL NOT NULL,
+
+    FOREIGN KEY(fk_exercise) REFERENCES exercise(id)
+);
+
+CREATE TABLE workoutPlan(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    workout_type VARCHAR(200) NOT NULL,
+
+    fk_user BIGSERIAL NOT NULL,
+    fk_professional BIGSERIAL NOT NULL,
+    fk_workout BIGSERIAL NOT NULL,
+
+    FOREIGN KEY(fk_user) REFERENCES user_client(id),
+    FOREIGN KEY(fk_professional) REFERENCES user_professional(id),
+    FOREIGN KEY(fk_workout) REFERENCES workout(id)
 );

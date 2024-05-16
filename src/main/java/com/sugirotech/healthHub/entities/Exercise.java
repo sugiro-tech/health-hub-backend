@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+// TODO REVER
 
 @Entity
 @Table(name = "exercise")
@@ -23,6 +24,10 @@ public class Exercise {
     private Integer repetitions;
     private Double exercise_interval;
     private Double interval_next;
+
+    @ManyToOne
+    @JoinColumn(name = "workout_id", referencedColumnName = "id")
+    private Workout workout;
 
     public Exercise(InExerciseDTO data) {
         this.name = data.name();

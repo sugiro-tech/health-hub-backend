@@ -4,7 +4,7 @@ package com.sugirotech.healthHub.enums.workout;
 import lombok.Getter;
 
 @Getter
-public enum EnumTrainingOptions {
+public enum EnumWorkoutType{
     DEFINITION("definition"),
     STRENGTH("strength"),
     HYPERTROPHY("hypertrophy"),
@@ -12,7 +12,7 @@ public enum EnumTrainingOptions {
 
     private final String type;
 
-    EnumTrainingOptions(String type){
+    EnumWorkoutType(String type){
         this.type = type;
     }
 }

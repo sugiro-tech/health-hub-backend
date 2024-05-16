@@ -2,7 +2,7 @@ package com.sugirotech.healthHub.entities;
 
 import com.sugirotech.healthHub.entities.users.User;
 import com.sugirotech.healthHub.entities.users.UserProfessional;
-import com.sugirotech.healthHub.enums.workout.EnumTrainingOptions;
+import com.sugirotech.healthHub.enums.workout.EnumWorkoutType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+
+// TODO REVER
 
 @Entity
 @Table(name = "workoutPlan")
@@ -25,7 +27,7 @@ public class WorkoutPlan {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private EnumTrainingOptions options;
+    private EnumWorkoutType workout_type;
 
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -36,8 +38,6 @@ public class WorkoutPlan {
     @JoinColumn(name = "fk_professional")
     private UserProfessional fk_professional;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_workout", referencedColumnName = "id")
-    private List<Workout> fk_workout;
-
+    @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL)
+    private List<Workout> workouts;
 }

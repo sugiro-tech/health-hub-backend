@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.util.List;
 
+// TODO REVER
+
 @Entity
 @Table(name = "workout")
 @Getter
@@ -14,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Workout {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +24,10 @@ public class Workout {
 
     @Enumerated(EnumType.STRING)
     private EnumWeekdays weekday;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_workout", referencedColumnName = "id")
+    private WorkoutPlan workoutPlan;
 
     @ManyToOne
     @JoinColumn(name = "fk_exercise", referencedColumnName = "id")
