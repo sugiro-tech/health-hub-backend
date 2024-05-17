@@ -23,7 +23,7 @@ public class InfoNutriController {
     @Transactional
     @Operation(summary = "Register a nutritional table!",
             description ="Register a nutritional table!",
-            tags = {"Nutritional Info"})
+            tags = {"Nutritional"})
     public ResponseEntity<InNutriDTO> create (@RequestBody @Valid InNutriDTO data, UriComponentsBuilder uriBuilder){
         InfoNutri nutri = new InfoNutri(data);
 

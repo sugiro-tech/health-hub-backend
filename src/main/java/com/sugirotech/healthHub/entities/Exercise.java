@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 // TODO REVER
 
 @Entity
@@ -26,7 +28,7 @@ public class Exercise {
     private Double interval_next;
 
     @ManyToOne
-    @JoinColumn(name = "workout_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_exercise", referencedColumnName = "id")
     private Workout workout;
 
     public Exercise(InExerciseDTO data) {

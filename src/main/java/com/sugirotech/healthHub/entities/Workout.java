@@ -29,7 +29,6 @@ public class Workout {
     @JoinColumn(name = "fk_workout", referencedColumnName = "id")
     private WorkoutPlan workoutPlan;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_exercise", referencedColumnName = "id")
-    private List<Exercise> fk_exercise;
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<Exercise> exercises;
 }
