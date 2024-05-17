@@ -21,7 +21,6 @@ public class ExerciseController {
     @Autowired
     private ExerciseService exerciseService;
 
-
     @PostMapping
     @Transactional
     @Operation(summary = "Register an exercise!",
