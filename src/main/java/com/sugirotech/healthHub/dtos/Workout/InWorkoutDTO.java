@@ -1,7 +1,6 @@
 package com.sugirotech.healthHub.dtos.Workout;
 
 
-import com.sugirotech.healthHub.entities.Workout;
 import com.sugirotech.healthHub.enums.workout.EnumWeekdays;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +16,4 @@ public record InWorkoutDTO(
         List<Long> exerciseIds
         
 ) {
-        public InWorkoutDTO(Workout data) {
-                this(data.getName(), data.getWeekday());
-        }
 }
