@@ -3,6 +3,7 @@ package com.sugirotech.healthHub.services;
 import com.sugirotech.healthHub.dtos.Workout.InWorkoutDTO;
 import com.sugirotech.healthHub.dtos.Workout.WorkoutDTO;
 import com.sugirotech.healthHub.entities.Workout;
+import com.sugirotech.healthHub.exceptions.NotFoundException;
 import com.sugirotech.healthHub.repositories.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class WorkoutService {
         this.workoutRepository.save(workout);
 
         return new WorkoutDTO(workout);
+    }
+
+    public Workout findById(Long id){
+        return workoutRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout not found!"));
     }
 }

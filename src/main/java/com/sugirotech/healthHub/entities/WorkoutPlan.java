@@ -30,14 +30,14 @@ public class WorkoutPlan {
     private EnumWorkoutType workout_type;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_user")
-    private User fk_user;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_professional")
-    private UserProfessional fk_professional;
-
-    @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL)
-    private List<Workout> workouts;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_user")
+//    private User fk_user;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_professional")
+//    private UserProfessional fk_professional;
+//
+//    @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL)
+//    private List<Workout> workouts;
 }

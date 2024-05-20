@@ -52,34 +52,38 @@ CREATE TABLE professional_address(
     FOREIGN KEY(fk_professional) REFERENCES user_professional(id)
 );
 
+
+CREATE TABLE workout(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    weekday VARCHAR(200) NOT NULL
+);
+
+
 CREATE TABLE exercise(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     rounds INT NOT NULL,
     repetitions INT NOT NULL,
     exercise_interval DOUBLE PRECISION NOT NULL,
-    interval_next DOUBLE PRECISION NOT NULL
+    interval_next DOUBLE PRECISION NOT NULL,
+
+    workout_id BIGINT NOT NULL,
+    CONSTRAINT fk_workout FOREIGN KEY(workout_id) REFERENCES workout(id)
+
 );
 
-CREATE TABLE workout(
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
-    weekday VARCHAR(200) NOT NULL,
-    fk_exercise BIGSERIAL NOT NULL,
-
-    FOREIGN KEY(fk_exercise) REFERENCES exercise(id)
-);
 
 CREATE TABLE workoutPlan(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     workout_type VARCHAR(200) NOT NULL,
 
-    fk_user BIGSERIAL NOT NULL,
-    fk_professional BIGSERIAL NOT NULL,
-    fk_workout BIGSERIAL NOT NULL,
+    user_id BIGINT NOT NULL,
+    professional_id BIGINT NOT NULL,
+    workout_id BIGINT NOT NULL,
 
-    FOREIGN KEY(fk_user) REFERENCES user_client(id),
-    FOREIGN KEY(fk_professional) REFERENCES user_professional(id),
-    FOREIGN KEY(fk_workout) REFERENCES workout(id)
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user_client(id),
+    CONSTRAINT fk_professional FOREIGN KEY (professional_id) REFERENCES user_professional(id),
+    CONSTRAINT fk_workout FOREIGN KEY (workout_id) REFERENCES workout(id)
 );

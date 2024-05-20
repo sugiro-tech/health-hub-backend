@@ -1,13 +1,11 @@
 package com.sugirotech.healthHub.entities;
 
-import com.sugirotech.healthHub.dtos.InExerciseDTO;
+import com.sugirotech.healthHub.dtos.exercise.InExerciseDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 // TODO REVER
 
@@ -28,7 +26,7 @@ public class Exercise {
     private Double interval_next;
 
     @ManyToOne
-    @JoinColumn(name = "fk_exercise", referencedColumnName = "id")
+    @JoinColumn(name = "workout_id", nullable = false)
     private Workout workout;
 
     public Exercise(InExerciseDTO data) {

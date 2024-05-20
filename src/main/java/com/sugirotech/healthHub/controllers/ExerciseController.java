@@ -1,7 +1,7 @@
 package com.sugirotech.healthHub.controllers;
 
-import com.sugirotech.healthHub.dtos.InExerciseDTO;
-import com.sugirotech.healthHub.entities.Exercise;
+import com.sugirotech.healthHub.dtos.exercise.ExerciseDTO;
+import com.sugirotech.healthHub.dtos.exercise.InExerciseDTO;
 import com.sugirotech.healthHub.services.ExerciseService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
@@ -26,11 +26,11 @@ public class ExerciseController {
     @Operation(summary = "Register an exercise!",
             description ="Register an exercise!",
             tags = {"Exercise"})
-    public ResponseEntity<InExerciseDTO> create (@RequestBody @Valid InExerciseDTO data, UriComponentsBuilder uriBuilder){
-        Exercise exercise = new Exercise(data);
+    public ResponseEntity<ExerciseDTO> create (@RequestBody @Valid InExerciseDTO data, UriComponentsBuilder uriBuilder){
+        ExerciseDTO exercise = exerciseService.create(data);
 
-        var uri = uriBuilder.path("/exercise/{id}").buildAndExpand(exercise.getId()).toUri();
+        var uri = uriBuilder.path("/exercise/{id}").buildAndExpand(exercise.id()).toUri();
 
-        return ResponseEntity.created(uri).body(exerciseService.create(new InExerciseDTO(exercise)));
+        return ResponseEntity.created(uri).body(exercise);
     }
 }
