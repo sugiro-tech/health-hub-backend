@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.services;
 
-import com.sugirotech.healthHub.dtos.InNutriDTO;
+import com.sugirotech.healthHub.dtos.nutri.InNutriDTO;
 import com.sugirotech.healthHub.entities.InfoNutri;
 import com.sugirotech.healthHub.repositories.InfoNutriRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.entities;
 
-import com.sugirotech.healthHub.dtos.InNutriDTO;
+import com.sugirotech.healthHub.dtos.nutri.InNutriDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

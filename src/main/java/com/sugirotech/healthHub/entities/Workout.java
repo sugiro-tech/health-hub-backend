@@ -1,7 +1,6 @@
 package com.sugirotech.healthHub.entities;
 
 import com.sugirotech.healthHub.dtos.Workout.InWorkoutDTO;
-import com.sugirotech.healthHub.dtos.Workout.WorkoutDTO;
 import com.sugirotech.healthHub.enums.workout.EnumWeekdays;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,9 +37,5 @@ public class Workout {
     public Workout(InWorkoutDTO data) {
         this.name = data.name();
         this.weekday = data.weekday();
-    }
-
-    public Workout(WorkoutDTO byId) {
-
     }
 }

@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.services;
 
-import com.sugirotech.healthHub.dtos.InAddressDTO;
+import com.sugirotech.healthHub.dtos.address.InAddressDTO;
 import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;

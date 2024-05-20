@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.controllers;
 
-import com.sugirotech.healthHub.dtos.InAddressDTO;
+import com.sugirotech.healthHub.dtos.address.InAddressDTO;
 import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.services.AddressService;
 import jakarta.transaction.Transactional;

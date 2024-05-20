@@ -1,13 +1,12 @@
 package com.sugirotech.healthHub.controllers;
 
-import com.sugirotech.healthHub.dtos.InNutriDTO;
+import com.sugirotech.healthHub.dtos.nutri.InNutriDTO;
 import com.sugirotech.healthHub.entities.InfoNutri;
 import com.sugirotech.healthHub.services.InfoNutriService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;

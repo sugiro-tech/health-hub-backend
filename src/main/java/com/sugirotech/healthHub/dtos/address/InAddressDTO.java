@@ -1,4 +1,4 @@
-package com.sugirotech.healthHub.dtos;
+package com.sugirotech.healthHub.dtos.address;
 
 import com.sugirotech.healthHub.entities.Address;
 import jakarta.validation.constraints.NotBlank;

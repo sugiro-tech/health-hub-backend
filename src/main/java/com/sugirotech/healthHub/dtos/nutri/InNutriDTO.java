@@ -1,4 +1,4 @@
-package com.sugirotech.healthHub.dtos;
+package com.sugirotech.healthHub.dtos.nutri;
 
 import com.sugirotech.healthHub.entities.InfoNutri;
 import jakarta.validation.constraints.PositiveOrZero;

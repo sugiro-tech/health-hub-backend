@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.entities;
 
-import com.sugirotech.healthHub.dtos.InAddressDTO;
+import com.sugirotech.healthHub.dtos.address.InAddressDTO;
 import com.sugirotech.healthHub.entities.users.User;
 import com.sugirotech.healthHub.entities.users.UserProfessional;
 import jakarta.persistence.*;

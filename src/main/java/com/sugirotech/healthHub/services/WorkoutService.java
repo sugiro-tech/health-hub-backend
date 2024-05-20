@@ -22,6 +22,8 @@ public class WorkoutService {
         return new WorkoutDTO(workout);
     }
 
+    // TODO REVER NECESSIDADE DE DTO NO RETORNO
+
     public Workout findById(Long id){
         return workoutRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout not found!"));
     }

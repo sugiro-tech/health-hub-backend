@@ -14,8 +14,9 @@ public record ExerciseDTO(
     Long workoutID
 
 ) {
-
     public ExerciseDTO(Exercise exercise){
-        this(exercise.getId(), exercise.getName(), exercise.getRounds(), exercise.getRepetitions(), exercise.getExercise_interval(), exercise.getExercise_interval(), exercise.getWorkout().getId());
+        this(exercise.getId(), exercise.getName(), exercise.getRounds(),
+                exercise.getRepetitions(), exercise.getExercise_interval(),
+                exercise.getInterval_next(), exercise.getWorkout().getId());
     }
 }
