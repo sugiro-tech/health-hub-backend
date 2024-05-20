@@ -14,6 +14,8 @@ public class WorkoutService {
     @Autowired
     private WorkoutRepository workoutRepository;
 
+    // Criação de Workout
+
     public WorkoutDTO create(InWorkoutDTO data){
         Workout workout = new Workout(data);
 
@@ -23,6 +25,8 @@ public class WorkoutService {
     }
 
     // TODO REVER NECESSIDADE DE DTO NO RETORNO
+
+    // busca de workout por id
 
     public Workout findById(Long id){
         return workoutRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout not found!"));
