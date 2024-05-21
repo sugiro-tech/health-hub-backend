@@ -39,15 +39,16 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "userClient", cascade = CascadeType.ALL, orphanRemoval = true)
     private WorkoutPlan workoutPlan;
 
-    public User(String name, String email, String password,
-                String cpf, Integer age, EnumRoles role, EnumSex sex) {
+    //TODO
+
+    public User(String name, String email, String cpf, Integer age, EnumSex sex, String encrypPassword) {
         this.name = name;
         this.email = email;
-        this.password = password;
         this.cpf = cpf;
         this.age = age;
-        this.role = role;
         this.sex = sex;
+        this.password = encrypPassword;
+        this.role = EnumRoles.CLIENT;
     }
 
     @Override

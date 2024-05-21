@@ -30,23 +30,13 @@ public class UserProfessional extends User{
     @OneToOne(mappedBy = "userProfessional", cascade = CascadeType.ALL, orphanRemoval = true)
     private WorkoutPlan workoutPlan;
 
-    public UserProfessional(String name, String email, String password,
-                            String cpf, Integer age, String crn_cref,
-                            EnumRoles role, EnumSex sex, Integer rating, EnumJobProfessional job) {
-        super(name, email, password, cpf, age, role, sex);
-        this.crn_cref = crn_cref;
-        this.rating = rating;
-        this.job = job;
-    }
+    //TODO
 
-    // Construtor utilizando DTO
-
-    public UserProfessional(InUserProfessionalDTO data){
-        super(data.name(), data.email(), data.password(), data.cpf(), data.age(),
-        data.role(), data.sex());
-
+    public UserProfessional(InUserProfessionalDTO data, String encrypPassword) {
+        super(data.name(), data.email(), data.cpf(), data.age(), data.sex(), encrypPassword);
         this.crn_cref = data.crn_cref();
         this.job = data.job();
         this.rating = 0;
+        this.setRole(EnumRoles.PROFESSIONAL);
     }
 }
