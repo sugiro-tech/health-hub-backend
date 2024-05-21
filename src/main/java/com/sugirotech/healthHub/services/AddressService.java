@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.services;
 
+import com.sugirotech.healthHub.dtos.address.AddreesDTO;
 import com.sugirotech.healthHub.dtos.address.InAddressDTO;
 import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.repositories.AddressRepository;
@@ -12,11 +13,11 @@ public class AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
-    public InAddressDTO create (InAddressDTO data){
+    public AddreesDTO create (InAddressDTO data){
         Address address = new Address(data);
 
         this.addressRepository.save(address);
 
-        return new InAddressDTO(address);
+        return new AddreesDTO(address);
     }
 }

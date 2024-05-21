@@ -23,17 +23,16 @@ public class WorkoutController {
     @Autowired
     private WorkoutService workoutService;
 
-
     @PostMapping
     @Transactional
     @Operation(summary = "Register an workout!",
             description ="Register an workout!",
             tags = {"Workout"})
     public ResponseEntity<WorkoutDTO> create (@RequestBody @Valid InWorkoutDTO data, UriComponentsBuilder uriBuilder){
-        Workout workout = new Workout(data);
+        WorkoutDTO workout = workoutService.create(data);
 
-        var uri = uriBuilder.path("/workout/{id}").buildAndExpand(workout.getId()).toUri();
+        var uri = uriBuilder.path("/workout/{id}").buildAndExpand(workout.id()).toUri();
 
-        return ResponseEntity.created(uri).body(workoutService.create(data));
+        return ResponseEntity.created(uri).body(workout);
     }
 }

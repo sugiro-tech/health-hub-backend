@@ -2,6 +2,7 @@ package com.sugirotech.healthHub.entities.users;
 
 import com.sugirotech.healthHub.dtos.users.InUserProfessionalDTO;
 import com.sugirotech.healthHub.entities.Address;
+import com.sugirotech.healthHub.entities.WorkoutPlan;
 import com.sugirotech.healthHub.enums.users.EnumJobProfessional;
 import com.sugirotech.healthHub.enums.users.EnumRoles;
 import com.sugirotech.healthHub.enums.users.EnumSex;
@@ -25,6 +26,9 @@ public class UserProfessional extends User{
 
     @ManyToMany(mappedBy = "fk_professional", fetch = FetchType.EAGER)
     private List<Address> fk_address;
+
+    @OneToOne(mappedBy = "userProfessional", cascade = CascadeType.ALL, orphanRemoval = true)
+    private WorkoutPlan workoutPlan;
 
     public UserProfessional(String name, String email, String password,
                             String cpf, Integer age, String crn_cref,

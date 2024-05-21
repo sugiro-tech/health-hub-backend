@@ -27,9 +27,9 @@ public class Workout {
     @Enumerated(EnumType.STRING)
     private EnumWeekdays weekday;
 
-//    @ManyToOne
-//    @JoinColumn(name = "fk_workout", referencedColumnName = "id")
-//    private WorkoutPlan workoutPlan;
+    @ManyToOne
+    @JoinColumn(name = "workoutPlan_id", referencedColumnName = "id")
+    private WorkoutPlan workoutPlan;
 
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Exercise> exercises = new HashSet<>();

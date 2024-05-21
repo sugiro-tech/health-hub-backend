@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 // TODO REVER
 
@@ -29,15 +31,18 @@ public class WorkoutPlan {
     @Enumerated(EnumType.STRING)
     private EnumWorkoutType workout_type;
 
+    // Relaçao um para muitos na tabela 'workout'
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_user")
-//    private User fk_user;
-//
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_professional")
-//    private UserProfessional fk_professional;
-//
-//    @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL)
-//    private List<Workout> workouts;
+    @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Workout> workouts = new HashSet<>();
+
+    // FK USER, FK PROFESSIONAL
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User userClient;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "professional_id", referencedColumnName = "id")
+    private UserProfessional userProfessional;
 }

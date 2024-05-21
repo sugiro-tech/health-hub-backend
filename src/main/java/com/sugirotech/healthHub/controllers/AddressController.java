@@ -1,8 +1,10 @@
 package com.sugirotech.healthHub.controllers;
 
+import com.sugirotech.healthHub.dtos.address.AddreesDTO;
 import com.sugirotech.healthHub.dtos.address.InAddressDTO;
 import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.services.AddressService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,14 @@ public class AddressController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<InAddressDTO> create (@RequestBody @Valid InAddressDTO data, UriComponentsBuilder uriBuilder){
-        Address address = new Address(data);
+    @Operation(summary = "Register an addrees!",
+            description ="Register an addrees!",
+            tags = {"Addrees"})
+    public ResponseEntity<AddreesDTO> create (@RequestBody @Valid InAddressDTO data, UriComponentsBuilder uriBuilder){
+        AddreesDTO address = addressService.create(data);
 
-        var uri = uriBuilder.path("/address/{id}").buildAndExpand(address.getId()).toUri();
+        var uri = uriBuilder.path("/address/{id}").buildAndExpand(address.id()).toUri();
 
-        return ResponseEntity.created(uri).body(addressService.create(new InAddressDTO(address)));
+        return ResponseEntity.created(uri).body(address);
     }
 }

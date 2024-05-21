@@ -8,6 +8,7 @@ CREATE TABLE nutri(
     fibers DOUBLE PRECISION NOT NULL
 );
 
+
 CREATE TABLE address(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -17,6 +18,7 @@ CREATE TABLE address(
     state VARCHAR(100) NOT NULL,
     number BIGINT NOT NULL
 );
+
 
 CREATE TABLE user_professional(
     id BIGSERIAL PRIMARY KEY,
@@ -32,6 +34,7 @@ CREATE TABLE user_professional(
     job VARCHAR(40) NOT NULL
 );
 
+
 CREATE TABLE user_client(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -44,6 +47,7 @@ CREATE TABLE user_client(
     sex VARCHAR(30) NOT NULL
 );
 
+
 CREATE TABLE professional_address(
     fk_address BIGINT NOT NULL,
     fk_professional BIGINT NOT NULL,
@@ -53,10 +57,27 @@ CREATE TABLE professional_address(
 );
 
 
+CREATE TABLE workoutPlan(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    workout_type VARCHAR(200) NOT NULL,
+
+    user_id BIGINT NOT NULL,
+    professional_id BIGINT NOT NULL,
+
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user_client(id),
+    CONSTRAINT fk_professional FOREIGN KEY (professional_id) REFERENCES user_professional(id)
+);
+
+
 CREATE TABLE workout(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
-    weekday VARCHAR(200) NOT NULL
+    weekday VARCHAR(200) NOT NULL,
+
+    workoutPlan_id BIGINT NOT NULL,
+
+    CONSTRAINT fk_workoutPlan FOREIGN KEY(workoutPlan_id) REFERENCES workoutPlan(id)
 );
 
 
@@ -70,20 +91,4 @@ CREATE TABLE exercise(
 
     workout_id BIGINT NOT NULL,
     CONSTRAINT fk_workout FOREIGN KEY(workout_id) REFERENCES workout(id)
-
-);
-
-
-CREATE TABLE workoutPlan(
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
-    workout_type VARCHAR(200) NOT NULL,
-
-    user_id BIGINT NOT NULL,
-    professional_id BIGINT NOT NULL,
-    workout_id BIGINT NOT NULL,
-
-    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user_client(id),
-    CONSTRAINT fk_professional FOREIGN KEY (professional_id) REFERENCES user_professional(id),
-    CONSTRAINT fk_workout FOREIGN KEY (workout_id) REFERENCES workout(id)
 );

@@ -24,8 +24,6 @@ public class InfoNutri {
     private Double saturated;
     private Double fibers;
 
-    // Construtor com DTO
-
     public InfoNutri(InNutriDTO data) {
         this.kilocalories = data.kilocalories();
         this.protein = data.protein();

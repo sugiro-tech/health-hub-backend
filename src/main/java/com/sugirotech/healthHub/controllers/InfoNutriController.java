@@ -1,7 +1,7 @@
 package com.sugirotech.healthHub.controllers;
 
 import com.sugirotech.healthHub.dtos.nutri.InNutriDTO;
-import com.sugirotech.healthHub.entities.InfoNutri;
+import com.sugirotech.healthHub.dtos.nutri.NutriDTO;
 import com.sugirotech.healthHub.services.InfoNutriService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
@@ -23,13 +23,11 @@ public class InfoNutriController {
     @Operation(summary = "Register a nutritional table!",
             description ="Register a nutritional table!",
             tags = {"Nutritional"})
-    public ResponseEntity<InNutriDTO> create (@RequestBody @Valid InNutriDTO data, UriComponentsBuilder uriBuilder){
-        InfoNutri nutri = new InfoNutri(data);
+    public ResponseEntity<NutriDTO> create (@RequestBody @Valid InNutriDTO data, UriComponentsBuilder uriBuilder){
+        NutriDTO nutri = nutriService.create(data);
 
-        var uri = uriBuilder.path("/exercise/{id}").buildAndExpand(nutri.getId()).toUri();
+        var uri = uriBuilder.path("/nutri/{id}").buildAndExpand(nutri.id()).toUri();
 
-        // Terminar
-
-        return ResponseEntity.created(uri).body(new InNutriDTO(nutri));
+        return ResponseEntity.created(uri).body(nutri);
     }
 }

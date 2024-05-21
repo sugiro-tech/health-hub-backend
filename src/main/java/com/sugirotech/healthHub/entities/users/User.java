@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.entities.users;
 
+import com.sugirotech.healthHub.entities.WorkoutPlan;
 import com.sugirotech.healthHub.enums.users.EnumRoles;
 import com.sugirotech.healthHub.enums.users.EnumSex;
 import jakarta.persistence.*;
@@ -28,6 +29,9 @@ public class User{
 
     @Enumerated(EnumType.STRING)
     private EnumSex sex;
+
+    @OneToOne(mappedBy = "userClient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private WorkoutPlan workoutPlan;
 
     public User(String name, String email, String password,
                 String cpf, Integer age, EnumRoles role, EnumSex sex) {
