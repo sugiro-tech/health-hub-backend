@@ -1,4 +1,4 @@
-package com.sugirotech.healthHub.dtos.Workout;
+package com.sugirotech.healthHub.dtos.workout;
 
 
 import com.sugirotech.healthHub.entities.Workout;

@@ -1,7 +1,7 @@
 package com.sugirotech.healthHub.services;
 
-import com.sugirotech.healthHub.dtos.Workout.InWorkoutDTO;
-import com.sugirotech.healthHub.dtos.Workout.WorkoutDTO;
+import com.sugirotech.healthHub.dtos.workout.InWorkoutDTO;
+import com.sugirotech.healthHub.dtos.workout.WorkoutDTO;
 import com.sugirotech.healthHub.entities.Workout;
 import com.sugirotech.healthHub.exceptions.NotFoundException;
 import com.sugirotech.healthHub.repositories.WorkoutRepository;
@@ -14,10 +14,15 @@ public class WorkoutService {
     @Autowired
     private WorkoutRepository workoutRepository;
 
+    @Autowired
+    private WorkoutPlanService workoutPlanService;
+
     // Criação de Workout
 
     public WorkoutDTO create(InWorkoutDTO data){
         Workout workout = new Workout(data);
+
+        workout.setWorkoutPlan(workoutPlanService.findById(data.workoutPlanId()));
 
         this.workoutRepository.save(workout);
 

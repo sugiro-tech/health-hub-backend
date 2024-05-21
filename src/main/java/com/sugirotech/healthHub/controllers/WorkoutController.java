@@ -1,9 +1,8 @@
 package com.sugirotech.healthHub.controllers;
 
 
-import com.sugirotech.healthHub.dtos.Workout.InWorkoutDTO;
-import com.sugirotech.healthHub.dtos.Workout.WorkoutDTO;
-import com.sugirotech.healthHub.entities.Workout;
+import com.sugirotech.healthHub.dtos.workout.InWorkoutDTO;
+import com.sugirotech.healthHub.dtos.workout.WorkoutDTO;
 import com.sugirotech.healthHub.services.WorkoutService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;

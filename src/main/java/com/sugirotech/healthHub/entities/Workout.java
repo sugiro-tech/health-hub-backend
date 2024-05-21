@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.entities;
 
-import com.sugirotech.healthHub.dtos.Workout.InWorkoutDTO;
+import com.sugirotech.healthHub.dtos.workout.InWorkoutDTO;
 import com.sugirotech.healthHub.enums.workout.EnumWeekdays;
 import jakarta.persistence.*;
 import lombok.*;

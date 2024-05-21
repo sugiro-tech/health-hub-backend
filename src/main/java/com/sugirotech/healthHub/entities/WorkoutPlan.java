@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.entities;
 
+import com.sugirotech.healthHub.dtos.workoutplan.InWorkoutPlanDTO;
 import com.sugirotech.healthHub.entities.users.User;
 import com.sugirotech.healthHub.entities.users.UserProfessional;
 import com.sugirotech.healthHub.enums.workout.EnumWorkoutType;
@@ -10,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 // TODO REVER
@@ -45,4 +45,9 @@ public class WorkoutPlan {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "professional_id", referencedColumnName = "id")
     private UserProfessional userProfessional;
+
+    public WorkoutPlan(InWorkoutPlanDTO data) {
+        this.name = data.name();
+        this.workout_type = data.workout_type();
+    }
 }
