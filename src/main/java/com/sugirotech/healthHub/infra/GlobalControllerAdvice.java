@@ -37,4 +37,15 @@ public class GlobalControllerAdvice {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public ResponseEntity<Object> handleIllegalArgumentException(Exception e){
+        Map<String, Object> body = new HashMap<>();
+
+        body.put("message", e.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    }
+
 }
