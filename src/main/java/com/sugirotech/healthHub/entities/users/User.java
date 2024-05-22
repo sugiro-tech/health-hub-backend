@@ -42,16 +42,6 @@ public class User implements UserDetails {
     private WorkoutPlan workoutPlan;
 
 
-    public User(String name, String email, String cpf, Integer age, EnumSex sex, String encrypPassword) {
-        this.name = name;
-        this.email = email;
-        this.cpf = cpf;
-        this.age = age;
-        this.sex = sex;
-        this.password = encrypPassword;
-        this.role = EnumRoles.CLIENT;
-    }
-
     public User(InUserDTO dados, String encrypPassword) {
         this.name = dados.name();
         this.email = dados.email();
