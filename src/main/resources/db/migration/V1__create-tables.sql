@@ -42,7 +42,6 @@ CREATE TABLE user_client(
     password VARCHAR(250) NOT NULL,
     cpf VARCHAR(20) NOT NULL,
     age INT NOT NULL,
-    crn_cref VARCHAR(100) NOT NULL,
     role VARCHAR(50) NOT NULL,
     sex VARCHAR(30) NOT NULL
 );

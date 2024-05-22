@@ -14,9 +14,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private UserProfessionalRepository userProfessionalRepository;
+
 
     public UserDetails getByEmail(String email) {
 
@@ -29,6 +29,8 @@ public class UserService {
         System.out.println("USUARIO SERVICE - " + user.getUsername());
         return user;
     }
+
+    // saves
 
     public void saveProfessional(UserProfessional usuario) {
         this.userProfessionalRepository.save(usuario);

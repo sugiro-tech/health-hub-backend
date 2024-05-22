@@ -30,7 +30,6 @@ public class AuthorizationService {
         UserProfessional usuario = new UserProfessional(dados, passwordEncoder.encode(dados.password()));
 
         System.out.println("ROLES - " + usuario.getAuthorities());
-
         System.out.println("Usuario - " + usuario.getName());
 
         userService.saveProfessional(usuario);
@@ -45,7 +44,6 @@ public class AuthorizationService {
         User usuario = new User(dados, passwordEncoder.encode(dados.password()));
 
         System.out.println("ROLES - " + usuario.getAuthorities());
-
         userService.saveClient(usuario);
 
         return new UserDTO(usuario);

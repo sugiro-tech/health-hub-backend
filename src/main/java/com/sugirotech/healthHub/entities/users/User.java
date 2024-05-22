@@ -27,6 +27,7 @@ public class User implements UserDetails {
     private Long id;
     private String name;
     private String email;
+
     private String password;
     private String cpf;
     private Integer age;
@@ -37,10 +38,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private EnumSex sex;
 
-    @OneToOne(mappedBy = "userClient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "userClient", cascade = CascadeType.ALL)
     private WorkoutPlan workoutPlan;
 
-    //TODO
 
     public User(String name, String email, String cpf, Integer age, EnumSex sex, String encrypPassword) {
         this.name = name;
@@ -61,6 +61,7 @@ public class User implements UserDetails {
         this.password = encrypPassword;
         this.role = EnumRoles.CLIENT;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
