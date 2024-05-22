@@ -30,6 +30,12 @@ public class UserService {
         return user;
     }
 
+    // Retorna tipo de usuario
+
+    public boolean isClient(String email){
+        return userRepository.findByEmail(email) != null;
+    }
+
     // saves
 
     public void saveProfessional(UserProfessional usuario) {

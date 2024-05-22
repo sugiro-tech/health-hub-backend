@@ -35,6 +35,7 @@ public class AuthenticationController {
             description ="Fazer Login!",
             tags = {"Auth"})
     public ResponseEntity<TokenJwtDTO> login(@RequestBody @Valid AuthenticationDTO data){
+
         System.out.println("Print controller - " + authenticationService.loginAndCreateToken(data));
 
         return new ResponseEntity<>(authenticationService.loginAndCreateToken(data), HttpStatus.OK);
