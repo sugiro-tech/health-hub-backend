@@ -45,7 +45,7 @@ public class AuthenticationController {
             description ="Register a professional!!",
             tags = {"Auth"})
     public ResponseEntity<UserProfessionalDTO> registerProfessional(@RequestBody @Valid InUserProfessionalDTO dados){
-        return new ResponseEntity<>(authorizationService.register(dados), HttpStatus.OK);
+        return new ResponseEntity<>(authorizationService.registerProfessional(dados), HttpStatus.OK);
     }
 
 
@@ -54,6 +54,6 @@ public class AuthenticationController {
             description ="Register a client!",
             tags = {"Auth"})
     public ResponseEntity<UserDTO> registerClient(@RequestBody @Valid InUserDTO dados){
-        return new ResponseEntity<>(authorizationService.register(dados), HttpStatus.OK);
+        return new ResponseEntity<>(authorizationService.registerClient(dados), HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.dtos.users;
 
+import com.sugirotech.healthHub.entities.users.User;
 import com.sugirotech.healthHub.enums.users.EnumSex;
 
 public record UserDTO(
@@ -10,4 +11,8 @@ public record UserDTO(
         Integer age,
         EnumSex sex
 ){
+    public UserDTO(User usuario) {
+        this(usuario.getId(), usuario.getName(), usuario.getEmail(),
+                usuario.getCpf(), usuario.getAge(), usuario.getSex());
+    }
 }

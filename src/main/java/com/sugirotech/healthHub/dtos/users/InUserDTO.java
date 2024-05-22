@@ -17,7 +17,6 @@ public record InUserDTO(
         String password,
         @NotBlank
         String cpf,
-        @NotBlank
         @Min(13)
         Integer age,
         @Enumerated

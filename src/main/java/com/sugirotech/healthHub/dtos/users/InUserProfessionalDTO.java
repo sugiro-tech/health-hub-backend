@@ -23,20 +23,14 @@ public record InUserProfessionalDTO(
         @NotBlank
         String cpf,
 
-        @NotBlank
         @Min(13)
         Integer age,
 
         @Enumerated
         EnumSex sex,
 
-
         @NotBlank
         String crn_cref,
-
-        @NotBlank
-        @Enumerated
-        EnumRoles role,
 
         @Enumerated
         EnumJobProfessional job

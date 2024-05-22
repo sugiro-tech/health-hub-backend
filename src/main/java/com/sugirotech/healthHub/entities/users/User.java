@@ -1,5 +1,6 @@
 package com.sugirotech.healthHub.entities.users;
 
+import com.sugirotech.healthHub.dtos.users.InUserDTO;
 import com.sugirotech.healthHub.entities.WorkoutPlan;
 import com.sugirotech.healthHub.enums.users.EnumRoles;
 import com.sugirotech.healthHub.enums.users.EnumSex;
@@ -51,13 +52,21 @@ public class User implements UserDetails {
         this.role = EnumRoles.CLIENT;
     }
 
+    public User(InUserDTO dados, String encrypPassword) {
+        this.name = dados.name();
+        this.email = dados.email();
+        this.cpf = dados.cpf();
+        this.age = dados.age();
+        this.sex = dados.sex();
+        this.password = encrypPassword;
+        this.role = EnumRoles.CLIENT;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role ==  EnumRoles.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_CLIENT"), new SimpleGrantedAuthority("ROLE_PROFESSIONAL"));
 
         else if (this.role == EnumRoles.CLIENT) return List.of(new SimpleGrantedAuthority("ROLE_CLIENT"));
-
-        else if (this.role == EnumRoles.PROFESSIONAL) return List.of(new SimpleGrantedAuthority("ROLE_PROFESSIONAL"));
 
         else return List.of(new SimpleGrantedAuthority("ROLE_PROFESSIONAL"));
     }

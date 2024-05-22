@@ -5,7 +5,6 @@ import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.entities.WorkoutPlan;
 import com.sugirotech.healthHub.enums.users.EnumJobProfessional;
 import com.sugirotech.healthHub.enums.users.EnumRoles;
-import com.sugirotech.healthHub.enums.users.EnumSex;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
