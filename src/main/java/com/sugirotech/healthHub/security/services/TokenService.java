@@ -42,8 +42,11 @@ public class TokenService {
         }
     }
 
-    public String gerarTokenProfessional(UserProfessional user) throws JWTCreationException{
+    public String gerarTokenProfessional(UserProfessional user) throws JWTCreationException {
+        System.out.println("Qualquer Coisa fora do try");
         try {
+            System.out.println("Qualquer Coisa dentro do try");
+
             return JWT
                     .create()
                     .withIssuer("health_api")
@@ -51,9 +54,8 @@ public class TokenService {
                     .withClaim("id", user.getId())
                     .withExpiresAt(Expirar())
                     .sign(Algorithm.HMAC256(secret));
-        }
-        catch (JWTCreationException e){
-            logger.error("Erro ao gerar o token!", e);
+        } catch (JWTCreationException e) {
+            logger.error("Erro ao gerar o token para o usuário profissional com email: {} e id: {}", user.getEmail(), user.getId(), e);
             throw new RuntimeException("Erro ao gerar o token", e);
         }
     }

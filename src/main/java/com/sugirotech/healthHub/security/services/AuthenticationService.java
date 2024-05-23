@@ -22,6 +22,7 @@ public class AuthenticationService {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+
     @Autowired
     private UserService userService;
 
@@ -31,13 +32,22 @@ public class AuthenticationService {
 
     public TokenJwtDTO loginAndCreateToken(AuthenticationDTO data) {
 
+        System.out.println(userService.isClient(data.email()));
+
         if (userService.isClient(data.email())) {
+            System.out.println("Entrou!");
+
             String tokenJWT = tokenService.gerarToken((User) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal());
+            System.out.println("Token - " + tokenJWT);
 
             return new TokenJwtDTO(tokenJWT);
         }
-        String tokenJWT = tokenService.gerarTokenProfessional((UserProfessional) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal());
+        else {
+            System.out.println("Entrou else!");
+            String tokenJWT = tokenService.gerarTokenProfessional((UserProfessional) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal());
+            System.out.println("Token - " + tokenJWT);
 
-        return new TokenJwtDTO(tokenJWT);
+            return new TokenJwtDTO(tokenJWT);
+        }
     }
 }

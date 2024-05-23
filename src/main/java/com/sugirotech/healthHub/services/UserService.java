@@ -20,7 +20,18 @@ public class UserService {
 
     public UserDetails getByEmail(String email) {
 
-        UserDetails user = userRepository.findByEmail(email);
+        if(isClient(email)){
+            UserDetails user = userRepository.findByEmail(email);
+
+            if(user == null){
+                throw new BadCredentialsException("");
+            }
+
+            System.out.println("USUARIO SERVICE - " + user.getUsername());
+            return user;
+        }
+
+        UserDetails user = userProfessionalRepository.findByEmail(email);
 
         if(user == null){
             throw new BadCredentialsException("");
