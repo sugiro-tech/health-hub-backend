@@ -16,30 +16,7 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private UserProfessionalRepository userProfessionalRepository;
-
-
-    public UserDetails getByEmail(String email) {
-
-        if(isClient(email)){
-            UserDetails user = userRepository.findByEmail(email);
-
-            if(user == null){
-                throw new BadCredentialsException("");
-            }
-
-            System.out.println("USUARIO SERVICE - " + user.getUsername());
-            return user;
-        }
-
-        UserDetails user = userProfessionalRepository.findByEmail(email);
-
-        if(user == null){
-            throw new BadCredentialsException("");
-        }
-
-        System.out.println("USUARIO SERVICE - " + user.getUsername());
-        return user;
-    }
+    
 
     // Retorna tipo de usuario
 
