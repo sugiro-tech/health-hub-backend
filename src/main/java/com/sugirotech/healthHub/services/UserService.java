@@ -7,7 +7,10 @@ import com.sugirotech.healthHub.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,7 +24,7 @@ public class UserService {
     // Retorna tipo de usuario
 
     public boolean isClient(String email){
-        return userRepository.findByEmail(email) != null;
+        return userRepository.findByEmail(email).isPresent();
     }
 
     // saves
@@ -32,5 +35,20 @@ public class UserService {
 
     public void saveClient(User usuario) {
         this.userRepository.save(usuario);
+    }
+
+    public Object getByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+
+        if(user.isPresent()){
+            return  user.get();
+        }
+
+        Optional<UserProfessional> userProfessional = userProfessionalRepository.findByEmail(email);
+        if(userProfessional.isPresent()){
+            return userProfessional.get();
+        }
+
+        throw new UsernameNotFoundException("User not found " + email);
     }
 }

@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -57,6 +58,9 @@ public class TokenService {
         } catch (JWTCreationException e) {
             logger.error("Erro ao gerar o token para o usuário profissional com email: {} e id: {}", user.getEmail(), user.getId(), e);
             throw new RuntimeException("Erro ao gerar o token", e);
+        }
+        catch (InvocationTargetException e){
+            throw new RuntimeException(e);
         }
     }
 
