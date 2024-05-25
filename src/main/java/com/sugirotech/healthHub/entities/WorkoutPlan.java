@@ -10,13 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
-
-// TODO REVER
 
 @Entity
-@Table(name = "workoutPlan")
+@Table(name = "workout_plan")
 @Getter
 @Setter
 @AllArgsConstructor

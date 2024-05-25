@@ -53,7 +53,7 @@ public class UserProfessional implements UserDetails {
     private EnumJobProfessional job;
 
     @ManyToMany(mappedBy = "fk_professional", fetch = FetchType.EAGER)
-    private List<Address> fk_address;
+    private Set<Address> fk_address = new HashSet<>();
 
     @OneToMany(mappedBy = "userProfessional", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<WorkoutPlan> workoutPlans = new HashSet<>();

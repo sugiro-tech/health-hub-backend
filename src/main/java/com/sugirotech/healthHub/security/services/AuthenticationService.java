@@ -37,7 +37,7 @@ public class AuthenticationService {
             System.out.println("Service: User is client");
             try {
                 User user = (User) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal();
-                System.out.println("Service: User authenticated: " + user);
+                System.out.println("Service: User authenticated: " + user.getEmail());
                 String tokenJWT = tokenService.gerarToken(user);
                 System.out.println("Service: Token generated for client: " + tokenJWT);
                 return new TokenJwtDTO(tokenJWT);
@@ -50,7 +50,7 @@ public class AuthenticationService {
             System.out.println("Service: User is professional");
             try {
                 UserProfessional userProfessional = (UserProfessional) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal();
-                System.out.println("Service: UserProfessional authenticated: " + userProfessional);
+                System.out.println("Service: UserProfessional authenticated: " + userProfessional.getEmail());
                 String tokenJWT = tokenService.gerarTokenProfessional(userProfessional);
                 System.out.println("Service: Token generated for professional: " + tokenJWT);
                 return new TokenJwtDTO(tokenJWT);

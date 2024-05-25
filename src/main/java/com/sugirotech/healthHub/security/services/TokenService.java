@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -43,11 +42,9 @@ public class TokenService {
         }
     }
 
-    public String gerarTokenProfessional(UserProfessional user) throws JWTCreationException {
-        System.out.println("Qualquer Coisa fora do try");
-        try {
-            System.out.println("Qualquer Coisa dentro do try");
 
+    public String gerarTokenProfessional(UserProfessional user) throws JWTCreationException {
+        try {
             return JWT
                     .create()
                     .withIssuer("health_api")

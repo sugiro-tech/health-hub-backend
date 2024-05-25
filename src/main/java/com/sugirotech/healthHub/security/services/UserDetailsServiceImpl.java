@@ -4,7 +4,6 @@ import com.sugirotech.healthHub.entities.users.User;
 import com.sugirotech.healthHub.entities.users.UserProfessional;
 import com.sugirotech.healthHub.repositories.UserProfessionalRepository;
 import com.sugirotech.healthHub.repositories.UserRepository;
-import com.sugirotech.healthHub.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,7 +23,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-
         Optional<UserProfessional> userProfessional = userProfessionalRepository.findByEmail(email);
 
         if(userProfessional.isPresent()){
@@ -38,6 +36,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         throw new UsernameNotFoundException("User not found: " + email);
-
     }
 }
