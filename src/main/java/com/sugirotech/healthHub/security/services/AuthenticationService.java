@@ -31,23 +31,34 @@ public class AuthenticationService {
 
 
     public TokenJwtDTO loginAndCreateToken(AuthenticationDTO data) {
-
-        System.out.println(userService.isClient(data.email()));
+        System.out.println("Service: loginAndCreateToken called with data: " + data);
 
         if (userService.isClient(data.email())) {
-            System.out.println("Entrou!");
-
-            String tokenJWT = tokenService.gerarToken((User) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal());
-            System.out.println("Token - " + tokenJWT);
-
-            return new TokenJwtDTO(tokenJWT);
-        }
-        else {
-            System.out.println("Entrou else!");
-            String tokenJWT = tokenService.gerarTokenProfessional((UserProfessional) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal());
-            System.out.println("Token - " + tokenJWT);
-
-            return new TokenJwtDTO(tokenJWT);
+            System.out.println("Service: User is client");
+            try {
+                User user = (User) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal();
+                System.out.println("Service: User authenticated: " + user);
+                String tokenJWT = tokenService.gerarToken(user);
+                System.out.println("Service: Token generated for client: " + tokenJWT);
+                return new TokenJwtDTO(tokenJWT);
+            } catch (Exception e) {
+                System.out.println("Service: Exception during client authentication: " + e.getMessage());
+                e.printStackTrace();
+                throw e;
+            }
+        } else {
+            System.out.println("Service: User is professional");
+            try {
+                UserProfessional userProfessional = (UserProfessional) manager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.senha())).getPrincipal();
+                System.out.println("Service: UserProfessional authenticated: " + userProfessional);
+                String tokenJWT = tokenService.gerarTokenProfessional(userProfessional);
+                System.out.println("Service: Token generated for professional: " + tokenJWT);
+                return new TokenJwtDTO(tokenJWT);
+            } catch (Exception e) {
+                System.out.println("Service: Exception during professional authentication: " + e.getMessage());
+                e.printStackTrace();
+                throw e;
+            }
         }
     }
-}
+    }

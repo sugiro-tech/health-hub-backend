@@ -7,20 +7,26 @@ import com.sugirotech.healthHub.enums.users.EnumJobProfessional;
 import com.sugirotech.healthHub.enums.users.EnumRoles;
 import com.sugirotech.healthHub.enums.users.EnumSex;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "user_professional")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserProfessional implements UserDetails {
 
     @Id
@@ -49,8 +55,8 @@ public class UserProfessional implements UserDetails {
     @ManyToMany(mappedBy = "fk_professional", fetch = FetchType.EAGER)
     private List<Address> fk_address;
 
-    @OneToOne(mappedBy = "userProfessional", cascade = CascadeType.ALL, orphanRemoval = true)
-    private WorkoutPlan workoutPlan;
+    @OneToMany(mappedBy = "userProfessional", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<WorkoutPlan> workoutPlans = new HashSet<>();
 
 
     public UserProfessional(InUserProfessionalDTO data, String encrypPassword) {

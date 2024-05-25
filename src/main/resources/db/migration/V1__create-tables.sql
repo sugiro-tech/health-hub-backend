@@ -56,7 +56,7 @@ CREATE TABLE professional_address(
 );
 
 
-CREATE TABLE workoutPlan(
+CREATE TABLE workout_plan(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     workout_type VARCHAR(200) NOT NULL,
@@ -74,9 +74,9 @@ CREATE TABLE workout(
     name VARCHAR(200) NOT NULL,
     weekday VARCHAR(200) NOT NULL,
 
-    workoutPlan_id BIGINT NOT NULL,
+    workout_plan_id BIGINT NOT NULL,
 
-    CONSTRAINT fk_workoutPlan FOREIGN KEY(workoutPlan_id) REFERENCES workoutPlan(id)
+    CONSTRAINT fk_workout_plan FOREIGN KEY(workout_plan_id) REFERENCES workout_plan(id)
 );
 
 

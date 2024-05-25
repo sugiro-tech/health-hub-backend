@@ -59,9 +59,6 @@ public class TokenService {
             logger.error("Erro ao gerar o token para o usuário profissional com email: {} e id: {}", user.getEmail(), user.getId(), e);
             throw new RuntimeException("Erro ao gerar o token", e);
         }
-        catch (InvocationTargetException e){
-            throw new RuntimeException(e);
-        }
     }
 
     public String getSubject(String tokenJWT) throws JWTCreationException, JWTDecodeException{
