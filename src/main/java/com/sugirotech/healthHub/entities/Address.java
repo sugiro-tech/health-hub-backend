@@ -28,15 +28,18 @@ public class Address {
     private String state;
     private Integer number;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "professional_address", joinColumns = @JoinColumn(name = "fk_address"),
-    inverseJoinColumns = @JoinColumn(name = "fk_professional"))
-    private List<UserProfessional> fk_professional;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "client_address", joinColumns = @JoinColumn(name = "fk_address"),
-    inverseJoinColumns = @JoinColumn(name = "fk_client"))
-    private List<User> fk_client;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "professional_address",
+            joinColumns = @JoinColumn(name = "fk_address"),
+            inverseJoinColumns = @JoinColumn(name = "fk_professional"))
+    private List<UserProfessional> professionals;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "client_address",
+            joinColumns = @JoinColumn(name = "fk_address"),
+            inverseJoinColumns = @JoinColumn(name = "fk_client"))
+    private List<User> clients;
 
     public Address(InAddressDTO data) {
         this.name = data.name();

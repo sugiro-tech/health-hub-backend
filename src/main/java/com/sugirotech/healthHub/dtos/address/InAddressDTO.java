@@ -1,6 +1,5 @@
 package com.sugirotech.healthHub.dtos.address;
 
-import com.sugirotech.healthHub.entities.Address;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
@@ -16,11 +15,8 @@ public record InAddressDTO(
         @NotBlank
         String state,
         @Positive
-        Integer number
+        Integer number,
+        @Positive
+        String email_user
 ) {
-        public InAddressDTO(Address address){
-                this(address.getName(), address.getStreet(),
-                        address.getNeighborhood(), address.getCity(),
-                        address.getState(), address.getNumber());
-        }
 }

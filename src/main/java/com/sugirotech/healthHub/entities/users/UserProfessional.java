@@ -52,8 +52,8 @@ public class UserProfessional implements UserDetails {
     @Enumerated(EnumType.STRING)
     private EnumJobProfessional job;
 
-    @ManyToMany(mappedBy = "fk_professional", fetch = FetchType.EAGER)
-    private Set<Address> fk_address = new HashSet<>();
+    @ManyToMany(mappedBy = "professionals", fetch = FetchType.EAGER)
+    private Set<Address> addresses = new HashSet<>();
 
     @OneToMany(mappedBy = "userProfessional", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<WorkoutPlan> workoutPlans = new HashSet<>();

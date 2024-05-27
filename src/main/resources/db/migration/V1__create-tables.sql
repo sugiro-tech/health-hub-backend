@@ -56,6 +56,17 @@ CREATE TABLE professional_address(
 );
 
 
+CREATE TABLE client_address(
+    fk_address BIGINT NOT NULL,
+    fk_client BIGINT NOT NULL,
+
+    PRIMARY KEY(fk_address, fk_client),
+
+    CONSTRAINT fk_client FOREIGN KEY (fk_client) REFERENCES user_client(id),
+    CONSTRAINT fk_address FOREIGN KEY(fk_address) REFERENCES address(id)
+);
+
+
 CREATE TABLE workout_plan(
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
