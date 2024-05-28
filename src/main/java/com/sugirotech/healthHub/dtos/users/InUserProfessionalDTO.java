@@ -1,7 +1,6 @@
 package com.sugirotech.healthHub.dtos.users;
 
 import com.sugirotech.healthHub.enums.users.EnumJobProfessional;
-import com.sugirotech.healthHub.enums.users.EnumRoles;
 import com.sugirotech.healthHub.enums.users.EnumSex;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
@@ -17,10 +16,11 @@ public record InUserProfessionalDTO(
         String email,
 
         @NotBlank
-        @Size(min = 6)
+        @Size(min = 6, max = 30)
         String password,
 
         @NotBlank
+        @Size(min = 11, max = 11)
         String cpf,
 
         @Min(13)

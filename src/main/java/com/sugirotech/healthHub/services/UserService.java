@@ -1,12 +1,10 @@
 package com.sugirotech.healthHub.services;
 
-import com.sugirotech.healthHub.dtos.address.InAddressDTO;
-import com.sugirotech.healthHub.entities.Address;
+
 import com.sugirotech.healthHub.entities.users.User;
 import com.sugirotech.healthHub.entities.users.UserProfessional;
 import com.sugirotech.healthHub.repositories.UserProfessionalRepository;
 import com.sugirotech.healthHub.repositories.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "address")
@@ -18,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,18 +31,18 @@ public class Address {
     private String state;
     private Integer number;
 
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "professional_address",
             joinColumns = @JoinColumn(name = "fk_address"),
             inverseJoinColumns = @JoinColumn(name = "fk_professional"))
-    private List<UserProfessional> professionals;
+    private Set<UserProfessional> professionals = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "client_address",
             joinColumns = @JoinColumn(name = "fk_address"),
             inverseJoinColumns = @JoinColumn(name = "fk_client"))
-    private List<User> clients;
+    private Set<User> clients = new HashSet<>();
+
 
     public Address(InAddressDTO data) {
         this.name = data.name();

@@ -1,6 +1,7 @@
 package com.sugirotech.healthHub.entities.users;
 
 import com.sugirotech.healthHub.dtos.users.InUserDTO;
+import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.entities.WorkoutPlan;
 import com.sugirotech.healthHub.enums.users.EnumRoles;
 import com.sugirotech.healthHub.enums.users.EnumSex;
@@ -14,7 +15,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -41,6 +44,9 @@ public class User implements UserDetails {
 
     @OneToOne(mappedBy = "userClient", cascade = CascadeType.ALL)
     private WorkoutPlan workoutPlan;
+
+    @ManyToMany(mappedBy = "clients", fetch = FetchType.EAGER)
+    private Set<Address> addresses = new HashSet<>();
 
 
     public User(InUserDTO dados, String encrypPassword) {

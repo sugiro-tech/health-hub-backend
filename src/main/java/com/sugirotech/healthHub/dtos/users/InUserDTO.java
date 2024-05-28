@@ -13,7 +13,7 @@ public record InUserDTO(
         @Email(message = "Email should be valid")
         String email,
         @NotBlank
-        @Size(min = 6)
+        @Size(min = 6, max = 30)
         String password,
         @NotBlank
         String cpf,
