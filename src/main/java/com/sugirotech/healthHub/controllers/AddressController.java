@@ -7,12 +7,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/address")
@@ -23,14 +23,22 @@ public class AddressController {
 
     @PostMapping
     @Transactional
-    @Operation(summary = "Register an addrees!",
-            description ="Register an addrees!",
-            tags = {"Addrees"})
+    @Operation(summary = "Register an address!",
+            description ="Register an address!",
+            tags = {"Address"})
     public ResponseEntity<AddressDTO> create (@RequestBody @Valid InAddressDTO data, UriComponentsBuilder uriBuilder){
         AddressDTO address = addressService.create(data);
 
         var uri = uriBuilder.path("/address/{id}").buildAndExpand(address.id()).toUri();
 
         return ResponseEntity.created(uri).body(address);
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all addresses!",
+            description ="Get all addresses!",
+            tags = {"Address"})
+    public ResponseEntity<List<AddressDTO>> getAll (){
+        return new ResponseEntity<>(addressService.getAll(), HttpStatus.OK);
     }
 }
