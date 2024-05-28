@@ -1,8 +1,7 @@
 package com.sugirotech.healthHub.controllers;
 
-import com.sugirotech.healthHub.dtos.address.AddreesDTO;
+import com.sugirotech.healthHub.dtos.address.AddressDTO;
 import com.sugirotech.healthHub.dtos.address.InAddressDTO;
-import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.services.AddressService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
@@ -27,8 +26,8 @@ public class AddressController {
     @Operation(summary = "Register an addrees!",
             description ="Register an addrees!",
             tags = {"Addrees"})
-    public ResponseEntity<AddreesDTO> create (@RequestBody @Valid InAddressDTO data, UriComponentsBuilder uriBuilder){
-        AddreesDTO address = addressService.create(data);
+    public ResponseEntity<AddressDTO> create (@RequestBody @Valid InAddressDTO data, UriComponentsBuilder uriBuilder){
+        AddressDTO address = addressService.create(data);
 
         var uri = uriBuilder.path("/address/{id}").buildAndExpand(address.id()).toUri();
 

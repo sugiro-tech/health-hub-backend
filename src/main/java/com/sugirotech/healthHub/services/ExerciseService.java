@@ -3,9 +3,12 @@ package com.sugirotech.healthHub.services;
 import com.sugirotech.healthHub.dtos.exercise.ExerciseDTO;
 import com.sugirotech.healthHub.dtos.exercise.InExerciseDTO;
 import com.sugirotech.healthHub.entities.Exercise;
+import com.sugirotech.healthHub.exceptions.NotFoundException;
 import com.sugirotech.healthHub.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ExerciseService {
@@ -24,5 +27,13 @@ public class ExerciseService {
         this.exerciseRepository.save(exercise);
 
         return new ExerciseDTO(exercise);
+    }
+
+    public List<ExerciseDTO> getAll(){
+        return this.exerciseRepository.findAll().stream().map(ExerciseDTO::new).toList();
+    }
+
+    public ExerciseDTO getById(Long id){
+        return new ExerciseDTO(exerciseRepository.findById(id).orElseThrow(() -> new NotFoundException("Exercise not found!")));
     }
 }

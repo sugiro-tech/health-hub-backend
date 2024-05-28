@@ -7,12 +7,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/exercise")
@@ -33,4 +33,21 @@ public class ExerciseController {
 
         return ResponseEntity.created(uri).body(exercise);
     }
+
+    @GetMapping
+    @Operation(summary = "Get all exercises!",
+            description ="Get all exercises!",
+            tags = {"Exercise"})
+    public ResponseEntity<List<ExerciseDTO>> getAll (){
+        return new ResponseEntity<>(exerciseService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get exercise by ID",
+            description ="Get exercise by ID",
+            tags = {"Exercise"})
+    public ResponseEntity<ExerciseDTO> getByCPF(@PathVariable Long id){
+        return new ResponseEntity<>(exerciseService.getById(id), HttpStatus.OK);
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.sugirotech.healthHub.services;
 
-import com.sugirotech.healthHub.dtos.address.AddreesDTO;
+import com.sugirotech.healthHub.dtos.address.AddressDTO;
 import com.sugirotech.healthHub.dtos.address.InAddressDTO;
 import com.sugirotech.healthHub.entities.Address;
 import com.sugirotech.healthHub.entities.users.User;
@@ -34,7 +34,7 @@ public class AddressService {
 
 
     @Transactional
-    public AddreesDTO create (InAddressDTO data){
+    public AddressDTO create (InAddressDTO data){
 
         Address address = new Address(data);
 
@@ -49,7 +49,7 @@ public class AddressService {
             this.userProfessionalRepository.save(existingUserProfessional);
             this.addressRepository.save(address);
 
-            return new AddreesDTO(address);
+            return new AddressDTO(address);
         }
 
         Optional<User> user = userRepository.findByEmail(data.email_user());
@@ -63,7 +63,7 @@ public class AddressService {
             this.userRepository.save(existingUser);
             this.addressRepository.save(address);
 
-            return new AddreesDTO(address);
+            return new AddressDTO(address);
         }
         throw new NotFoundException("Client/Professional not found!");
     }
