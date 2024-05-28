@@ -28,7 +28,6 @@ public class AddressController {
             tags = {"Address"})
     public ResponseEntity<AddressDTO> create (@RequestBody @Valid InAddressDTO data, UriComponentsBuilder uriBuilder){
         AddressDTO address = addressService.create(data);
-
         var uri = uriBuilder.path("/address/{id}").buildAndExpand(address.id()).toUri();
 
         return ResponseEntity.created(uri).body(address);
@@ -41,4 +40,7 @@ public class AddressController {
     public ResponseEntity<List<AddressDTO>> getAll (){
         return new ResponseEntity<>(addressService.getAll(), HttpStatus.OK);
     }
+
+
+
 }

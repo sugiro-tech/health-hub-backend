@@ -17,7 +17,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/exercise")
 public class ExerciseController {
-
     @Autowired
     private ExerciseService exerciseService;
 
@@ -28,11 +27,11 @@ public class ExerciseController {
             tags = {"Exercise"})
     public ResponseEntity<ExerciseDTO> create (@RequestBody @Valid InExerciseDTO data, UriComponentsBuilder uriBuilder){
         ExerciseDTO exercise = exerciseService.create(data);
-
         var uri = uriBuilder.path("/exercise/{id}").buildAndExpand(exercise.id()).toUri();
 
         return ResponseEntity.created(uri).body(exercise);
     }
+
 
     @GetMapping
     @Operation(summary = "Get all exercises!",
@@ -42,6 +41,7 @@ public class ExerciseController {
         return new ResponseEntity<>(exerciseService.getAll(), HttpStatus.OK);
     }
 
+
     @GetMapping("/{id}")
     @Operation(summary = "Get exercise by ID",
             description ="Get exercise by ID",
@@ -49,5 +49,4 @@ public class ExerciseController {
     public ResponseEntity<ExerciseDTO> getByCPF(@PathVariable Long id){
         return new ResponseEntity<>(exerciseService.getById(id), HttpStatus.OK);
     }
-
 }

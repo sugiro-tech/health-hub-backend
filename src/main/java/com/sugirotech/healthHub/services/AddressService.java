@@ -74,7 +74,7 @@ public class AddressService {
     public List<AddressDTO> getAll(){
         return addressRepository.findAll().stream().map(AddressDTO::new).toList();
     }
-    
+
     public void save(InAddressDTO data){
         addressRepository.save(new Address(data));
     }
