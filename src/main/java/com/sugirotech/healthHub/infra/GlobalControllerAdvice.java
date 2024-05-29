@@ -1,6 +1,7 @@
 package com.sugirotech.healthHub.infra;
 
 import com.sugirotech.healthHub.dtos.ExceptionDTO;
+import com.sugirotech.healthHub.exceptions.InvalidLoginException;
 import com.sugirotech.healthHub.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,16 @@ public class GlobalControllerAdvice {
         body.put("message", e.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidLoginException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ResponseEntity<Object> handleInvalidLoginException(Exception e) {
+        Map<String, Object> body = new HashMap<String, Object>();
+        body.put("message", e.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
