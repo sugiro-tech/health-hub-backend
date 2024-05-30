@@ -42,9 +42,6 @@ public class AddressController {
             description ="Get all addresses!",
             tags = {"Address"})
     public ResponseEntity<List<AddressDTO>> getAll (){
-
-
-
         return new ResponseEntity<>(addressService.getAll(), HttpStatus.OK);
     }
 }

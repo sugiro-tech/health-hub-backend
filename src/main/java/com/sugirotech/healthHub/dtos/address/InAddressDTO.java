@@ -15,8 +15,6 @@ public record InAddressDTO(
         @NotBlank
         String state,
         @Positive
-        Integer number,
-        @NotBlank
-        String email_user
+        Integer number
 ) {
 }

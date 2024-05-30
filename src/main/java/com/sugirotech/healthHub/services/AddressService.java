@@ -47,7 +47,9 @@ public class AddressService {
 
         Address address = new Address(data);
 
-        Optional<UserProfessional> userProfessional = userProfessionalRepository.findByEmail(data.email_user());
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Optional<UserProfessional> userProfessional = userProfessionalRepository.findByEmail(userDetails.getUsername());
 
         if(userProfessional.isPresent()){
             UserProfessional existingUserProfessional = userProfessional.get();
@@ -61,7 +63,7 @@ public class AddressService {
             return new AddressDTO(address);
         }
 
-        Optional<User> user = userRepository.findByEmail(data.email_user());
+        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
 
         if(user.isPresent()){
             User existingUser = user.get();
