@@ -4,12 +4,14 @@ package com.sugirotech.healthHub.services;
 import com.sugirotech.healthHub.dtos.workoutplan.InWorkoutPlanDTO;
 import com.sugirotech.healthHub.dtos.workoutplan.WorkoutPlanDTO;
 import com.sugirotech.healthHub.entities.WorkoutPlan;
+import com.sugirotech.healthHub.entities.users.User;
 import com.sugirotech.healthHub.entities.users.UserProfessional;
 import com.sugirotech.healthHub.exceptions.InvalidLoginException;
 import com.sugirotech.healthHub.exceptions.NotFoundException;
 import com.sugirotech.healthHub.repositories.UserProfessionalRepository;
 import com.sugirotech.healthHub.repositories.UserRepository;
 import com.sugirotech.healthHub.repositories.WorkoutPlanRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,33 +33,34 @@ public class WorkoutPlanService {
 
     // TODO CONTINUAR APOS SECURITY
 
+    @Transactional
     public WorkoutPlanDTO create(InWorkoutPlanDTO data){
-
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String email = userDetails.getUsername();
 
-        System.out.println(userDetails.getUsername());
-
-        WorkoutPlan workoutPlan = new WorkoutPlan(data);
-
-        // Professional
-
-        Optional<UserProfessional> userProfessional = userProfessionalRepository.findByEmail(email);
+        Optional<UserProfessional> userProfessional = userProfessionalRepository.findByEmail(userDetails.getUsername());
 
         if(userProfessional.isPresent()){
-            workoutPlan.setUserProfessional(userProfessional.get());
 
-            // Client
+            Optional<User> user = userRepository.findByEmail(data.ClientEmail());
 
-            userRepository.findByEmail(data.ClientEmail()).ifPresent(workoutPlan::setUserClient);
+            if(user.isPresent()){
+                WorkoutPlan workoutPlan = new WorkoutPlan(data);
 
-            workoutPlanRepository.save(workoutPlan);
+                workoutPlan.setUserProfessional(userProfessional.get());
+                workoutPlan.setUserClient(user.get());
 
-            return new WorkoutPlanDTO(workoutPlan);
+                workoutPlanRepository.save(workoutPlan);
+
+                return new WorkoutPlanDTO(workoutPlan);
+            }
+
+            throw new NotFoundException("User not found!");
         }
 
-        throw new InvalidLoginException("non-existing login!");
+        throw new InvalidLoginException("non-existent login!");
     }
+
+
 
     public WorkoutPlan findById(Long id){
         return workoutPlanRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout Plan not found!"));

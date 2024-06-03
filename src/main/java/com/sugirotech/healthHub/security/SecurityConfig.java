@@ -36,6 +36,7 @@ public class SecurityConfig{
                     req.requestMatchers("/address", "/address/**").permitAll();
                     req.requestMatchers("/exercise", "/exercise/**").permitAll();
                     req.requestMatchers("/workout_plan", "/workout_plan/**").permitAll();
+                    req.requestMatchers("/workout", "/workout/**").permitAll();
 
                     req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     req.anyRequest().authenticated();
