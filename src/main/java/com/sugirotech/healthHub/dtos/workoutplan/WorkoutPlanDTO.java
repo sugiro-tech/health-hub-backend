@@ -9,13 +9,9 @@ public record WorkoutPlanDTO(
 
         Long id,
         String name,
-        EnumWorkoutType workout_type,
-        User userClient,
-        UserProfessional userProfessional
-
+        EnumWorkoutType workout_type
 ){
     public WorkoutPlanDTO(WorkoutPlan data){
-        this(data.getId(), data.getName(), data.getWorkout_type()
-                ,data.getUserClient(), data.getUserProfessional());
+        this(data.getId(), data.getName(), data.getWorkout_type());
     }
 }
