@@ -1,8 +1,6 @@
 package com.sugirotech.healthHub.dtos.workoutplan;
 
 import com.sugirotech.healthHub.entities.WorkoutPlan;
-import com.sugirotech.healthHub.entities.users.User;
-import com.sugirotech.healthHub.entities.users.UserProfessional;
 import com.sugirotech.healthHub.enums.workout.EnumWorkoutType;
 
 public record WorkoutPlanDTO(

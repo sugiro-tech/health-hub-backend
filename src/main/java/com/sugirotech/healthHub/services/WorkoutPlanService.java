@@ -64,6 +64,17 @@ public class WorkoutPlanService {
         return workoutPlanRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout Plan not found!"));
     }
 
-    // Criar Get All para os workout plan's do usuário logado
+    public WorkoutPlan getAllWorkoutPlanByLoggedUser() {
 
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
+
+        if(user.isPresent()){
+
+            return user.get().getWorkoutPlan();
+
+        }
+        throw new NotFoundException("wdawdaw");
+    }
 }

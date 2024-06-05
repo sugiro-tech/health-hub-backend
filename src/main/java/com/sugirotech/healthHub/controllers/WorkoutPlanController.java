@@ -8,9 +8,12 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/workout_plan")
@@ -31,5 +34,13 @@ public class WorkoutPlanController {
         var uri = uriBuilder.path("/workout/{id}").buildAndExpand(workoutPlan.id()).toUri();
 
         return ResponseEntity.created(uri).body(workoutPlan);
+    }
+
+    @GetMapping
+    @Operation(summary = "Get workout plans by logged in user!",
+            description ="Get workout plans by logged in user!",
+            tags = {"Workout Plan"})
+    public ResponseEntity<WorkoutPlanDTO> getWorkoutPlanByLoggedUser(){
+        return new ResponseEntity<>(new WorkoutPlanDTO(workoutPlanService.getAllWorkoutPlanByLoggedUser()), HttpStatus.OK );
     }
 }
