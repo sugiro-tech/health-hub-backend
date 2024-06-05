@@ -60,9 +60,10 @@ public class WorkoutPlanService {
         throw new InvalidLoginException("non-existent login!");
     }
 
-
-
     public WorkoutPlan findById(Long id){
         return workoutPlanRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout Plan not found!"));
     }
+
+    // Criar Get All para os workout plan's do usuário logado
+
 }
