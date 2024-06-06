@@ -8,6 +8,7 @@ import com.sugirotech.healthHub.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +42,9 @@ public class AuthenticationService {
                 String tokenJWT = tokenService.gerarToken(user);
                 System.out.println("Service: Token generated for client: " + tokenJWT);
                 return new TokenJwtDTO(tokenJWT);
-            } catch (Exception e) {
+            } catch (BadCredentialsException e) {
                 System.out.println("Service: Exception during client authentication: " + e.getMessage());
-                e.printStackTrace();
-                throw e;
+                throw new BadCredentialsException(e.getMessage());
             }
         } else {
             System.out.println("Service: User is professional");
@@ -54,10 +54,9 @@ public class AuthenticationService {
                 String tokenJWT = tokenService.gerarTokenProfessional(userProfessional);
                 System.out.println("Service: Token generated for professional: " + tokenJWT);
                 return new TokenJwtDTO(tokenJWT);
-            } catch (Exception e) {
+            } catch (BadCredentialsException e) {
                 System.out.println("Service: Exception during professional authentication: " + e.getMessage());
-                e.printStackTrace();
-                throw e;
+                throw new BadCredentialsException(e.getMessage());
             }
         }
     }

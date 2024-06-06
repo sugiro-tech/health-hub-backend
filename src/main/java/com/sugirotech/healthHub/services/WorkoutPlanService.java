@@ -73,8 +73,7 @@ public class WorkoutPlanService {
         if(user.isPresent()){
 
             return user.get().getWorkoutPlan();
-
         }
-        throw new NotFoundException("wdawdaw");
+        throw new NotFoundException("User not found!");
     }
 }
