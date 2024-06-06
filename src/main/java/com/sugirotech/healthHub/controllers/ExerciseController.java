@@ -32,10 +32,12 @@ public class ExerciseController {
         return ResponseEntity.created(uri).body(exercise);
     }
 
+    // TODO CRIAR METODO GET ALL PASSANDO O ID DO WORKOUT
+
 
     @GetMapping
-    @Operation(summary = "Get all exercises!",
-            description ="Get all exercises!",
+    @Operation(summary = "Get all exercises by workout plan id!",
+            description ="Get all exercises by workout plan id!!",
             tags = {"Exercise"})
     public ResponseEntity<List<ExerciseDTO>> getAll (){
         return new ResponseEntity<>(exerciseService.getAll(), HttpStatus.OK);

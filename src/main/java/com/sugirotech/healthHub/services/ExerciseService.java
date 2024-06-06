@@ -30,6 +30,7 @@ public class ExerciseService {
     }
 
     public List<ExerciseDTO> getAll(){
+
         return this.exerciseRepository.findAll().stream().map(ExerciseDTO::new).toList();
     }
 

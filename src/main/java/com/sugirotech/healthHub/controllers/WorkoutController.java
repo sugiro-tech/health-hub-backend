@@ -34,4 +34,7 @@ public class WorkoutController {
 
         return ResponseEntity.created(uri).body(workout);
     }
+
+    // TODO BUSCAR 'WORKOUT'S' PELO ID DE 'WORKOUT PLAN'
+
 }
