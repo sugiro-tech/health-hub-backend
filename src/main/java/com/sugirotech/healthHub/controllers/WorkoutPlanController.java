@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/workout_plan")
@@ -40,7 +42,7 @@ public class WorkoutPlanController {
     @Operation(summary = "Get workout plans by logged in user!",
             description ="Get workout plans by logged in user!",
             tags = {"Workout Plan"})
-    public ResponseEntity<WorkoutPlanDTO> getWorkoutPlanByLoggedUser(){
-        return new ResponseEntity<>(new WorkoutPlanDTO(workoutPlanService.getAllWorkoutPlanByLoggedUser()), HttpStatus.OK );
+    public ResponseEntity<Set<WorkoutPlanDTO>> getWorkoutPlanByLoggedUser(){
+        return new ResponseEntity<>(workoutPlanService.getAllWorkoutPlanByLoggedUser().stream().map(WorkoutPlanDTO::new).collect(Collectors.toSet()), HttpStatus.OK );
     }
 }

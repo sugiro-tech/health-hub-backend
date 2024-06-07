@@ -42,8 +42,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private EnumSex sex;
 
-    @OneToOne(mappedBy = "userClient", cascade = CascadeType.ALL)
-    private WorkoutPlan workoutPlan;
+    // TODO REVER ONE TO ONE
+
+    @OneToMany(mappedBy = "userClient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<WorkoutPlan> workoutPlans = new HashSet<>();
 
     @ManyToMany(mappedBy = "clients", fetch = FetchType.EAGER)
     private Set<Address> addresses = new HashSet<>();

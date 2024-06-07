@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class WorkoutPlanService {
@@ -64,7 +65,7 @@ public class WorkoutPlanService {
         return workoutPlanRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout Plan not found!"));
     }
 
-    public WorkoutPlan getAllWorkoutPlanByLoggedUser() {
+    public Set<WorkoutPlan> getAllWorkoutPlanByLoggedUser() {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -72,7 +73,7 @@ public class WorkoutPlanService {
 
         if(user.isPresent()){
 
-            return user.get().getWorkoutPlan();
+            return user.get().getWorkoutPlans();
         }
         throw new NotFoundException("User not found!");
     }
