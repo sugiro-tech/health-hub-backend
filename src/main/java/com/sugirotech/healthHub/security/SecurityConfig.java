@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -15,9 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
-@Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true)
+@Configuration
 public class SecurityConfig{
 
     @Autowired
@@ -33,9 +34,10 @@ public class SecurityConfig{
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers( "/auth/**").permitAll();
-                    req.requestMatchers("/address", "/address/**").permitAll();
-                    req.requestMatchers("/exercise", "/exercise/**").permitAll();
-                    req.requestMatchers("/workout_plan", "/workout_plan/**").permitAll();
+
+                    req.requestMatchers("/address", "/address/**").authenticated();
+
+                    req.requestMatchers("/workout_plan", "/workout_plan/**").authenticated();
                     req.requestMatchers("/workout", "/workout/**").permitAll();
 
                     req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
