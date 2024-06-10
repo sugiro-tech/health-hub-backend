@@ -3,9 +3,9 @@ package com.sugirotech.healthHub.controllers;
 
 import com.sugirotech.healthHub.dtos.workout.InWorkoutDTO;
 import com.sugirotech.healthHub.dtos.workout.WorkoutDTO;
-import com.sugirotech.healthHub.services.WorkoutPlanService;
 import com.sugirotech.healthHub.services.WorkoutService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/workout")
+@SecurityRequirement(name = "bearer-key")
 public class WorkoutController {
 
     @Autowired
@@ -36,7 +37,7 @@ public class WorkoutController {
         return ResponseEntity.created(uri).body(workout);
     }
 
-    // TODO BUSCAR 'WORKOUT'S' PELO ID DE 'WORKOUT PLAN'
+    // BUSCAR 'WORKOUT'S' PELO ID DE 'WORKOUT PLAN'
 
     @GetMapping("/plan/{id}")
     @Operation(summary = "Search Workout by Workout Plan!",

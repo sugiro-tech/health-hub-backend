@@ -7,13 +7,10 @@ import com.sugirotech.healthHub.entities.WorkoutPlan;
 import com.sugirotech.healthHub.exceptions.NotFoundException;
 import com.sugirotech.healthHub.repositories.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class WorkoutService {
@@ -36,18 +33,16 @@ public class WorkoutService {
         return new WorkoutDTO(workout);
     }
 
-    // TODO REVER NECESSIDADE DE DTO NO RETORNO
-
     // busca de workout por id
+    // Método utilizado apenas pelo 'ExerciseService'
 
     public Workout findById(Long id){
         return workoutRepository.findById(id).orElseThrow(() -> new NotFoundException("Workout not found!"));
     }
 
+    // Buscar 'workout's' pelo 'workout plan'
+
     public List<WorkoutDTO> getByWorkoutPlan(Long id){
-
-//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
 
         WorkoutPlan workoutPlan = workoutPlanService.findById(id);
 

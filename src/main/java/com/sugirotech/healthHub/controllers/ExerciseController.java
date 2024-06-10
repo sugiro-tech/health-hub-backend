@@ -4,6 +4,7 @@ import com.sugirotech.healthHub.dtos.exercise.ExerciseDTO;
 import com.sugirotech.healthHub.dtos.exercise.InExerciseDTO;
 import com.sugirotech.healthHub.services.ExerciseService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/exercise")
+@SecurityRequirement(name = "bearer-key")
 public class ExerciseController {
     @Autowired
     private ExerciseService exerciseService;
@@ -32,15 +34,15 @@ public class ExerciseController {
         return ResponseEntity.created(uri).body(exercise);
     }
 
-    // TODO CRIAR METODO GET ALL PASSANDO O ID DO WORKOUT
+    //  CRIAR METODO GET ALL PASSANDO O ID DO WORKOUT
 
 
-    @GetMapping
-    @Operation(summary = "Get all exercises by workout plan id!",
-            description ="Get all exercises by workout plan id!!",
+    @GetMapping("/workout/{id}")
+    @Operation(summary = "Get all exercises by workout id!",
+            description ="Get all exercises by workout id!!",
             tags = {"Exercise"})
-    public ResponseEntity<List<ExerciseDTO>> getAll (){
-        return new ResponseEntity<>(exerciseService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<ExerciseDTO>> getAll (@PathVariable Long id){
+        return new ResponseEntity<>(exerciseService.getAll(id), HttpStatus.OK);
     }
 
 
